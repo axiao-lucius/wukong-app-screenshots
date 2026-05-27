@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钉钉 vs 飞书 - 产品能力对比</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e6ed;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(0, 120, 255, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #0078ff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8b9dc3;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: rgba(20, 25, 50, 0.8);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 120, 255, 0.2);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0, 120, 255, 0.2);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #0078ff, #00d4ff);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .card-description {
+            font-size: 0.9rem;
+            color: #8b9dc3;
+            line-height: 1.5;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .modal-img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0, 120, 255, 0.3);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #0078ff;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px 0;
+            border-top: 1px solid rgba(0, 120, 255, 0.2);
+            color: #8b9dc3;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>钉钉 vs 飞书</h1>
+            <p class="subtitle">企业级产品核心能力差异化对比 · 10大维度深度解析</p>
+        </header>
+        
+        <div class="gallery">
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/01-enterprise-ai-platform.png" 
+                     alt="企业级AI平台架构" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">01</span>
+                    <h3 class="card-title">企业级AI平台架构</h3>
+                    <p class="card-description">钉钉+悟空的AI原生之路，展示Agent智能平台的分层架构与核心组件</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/02-wukong-vs-aily.png" 
+                     alt="钉钉悟空 vs 飞书Aily" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">02</span>
+                    <h3 class="card-title">钉钉悟空 vs 飞书Aily</h3>
+                    <p class="card-description">五层企业级治理体系、OPT行业场景能力、AI操控能力等多维度对比</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/03-ai-listening-vs-miaoji.png" 
+                     alt="钉钉AI听记 vs 飞书妙记" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">03</span>
+                    <h3 class="card-title">钉钉AI听记 vs 飞书妙记</h3>
+                    <p class="card-description">语音智能、AI生成纪要、录制互动、安全管控等核心功能对比</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/04-ai-vs-recording-bean.png" 
+                     alt="钉钉AI vs 飞书录音豆" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">04</span>
+                    <h3 class="card-title">钉钉AI vs 飞书录音豆</h3>
+                    <p class="card-description">硬件参数、语音智能、AI纪要分析、企业级能力全方位对比</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/05-ai-tables-vs-multidimensional.png" 
+                     alt="钉钉AI表格 vs 飞书多维表格" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">05</span>
+                    <h3 class="card-title">钉钉AI表格 vs 飞书多维表格</h3>
+                    <p class="card-description">AI字段处理、电商生态、低代码联动、自动化流程等深度对比</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/06-docs-vs-feishu-docs.png" 
+                     alt="钉钉文档 vs 飞书文档" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">06</span>
+                    <h3 class="card-title">钉钉文档 vs 飞书文档</h3>
+                    <p class="card-description">Office兼容、编辑体验、协同协作、知识库归档等核心能力对比</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/07-yida-vs-lowcode.png" 
+                     alt="钉钉宜搭 vs 飞书低代码" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">07</span>
+                    <h3 class="card-title">钉钉宜搭 vs 飞书低代码</h3>
+                    <p class="card-description">企业级保障、生态闭环、表单流程落地效率等产品演示对比</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/08-teambition-vs-meego.png" 
+                     alt="钉钉Teambition vs 飞书Meego" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">08</span>
+                    <h3 class="card-title">钉钉Teambition vs 飞书Meego</h3>
+                    <p class="card-description">安全部署、底座生态融合、私有化与混合云支持对比</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/09-security-comparison.png" 
+                     alt="钉钉专属安全 vs 飞书安全" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">09</span>
+                    <h3 class="card-title">钉钉专属安全 vs 飞书安全</h3>
+                    <p class="card-description">安全运营中心、权限管控、DLP防泄漏、终端网络安全全面对比</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/axiao-lucius/wukong-app-screenshots/main/screenshots/10-mail-comparison.png" 
+                     alt="阿里企业邮箱 vs 飞书邮箱" 
+                     class="card-image"
+                     onclick="openModal(this.src)">
+                <div class="card-content">
+                    <span class="card-number">10</span>
+                    <h3 class="card-title">阿里企业邮箱 vs 飞书邮箱</h3>
+                    <p class="card-description">独立协同融合、安全合规、存储容量、管理后台、AI能力全球化对比</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 钉钉 vs 飞书产品对比 | 内部培训材料 · 仅供参考</p>
+            <p style="margin-top: 10px; font-size: 0.85rem;">
+                <a href="https://github.com/axiao-lucius/wukong-app-screenshots" 
+                   style="color: #0078ff; text-decoration: none;">
+                   GitHub 仓库
+                </a>
+            </p>
+        </footer>
+    </div>
+    
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img id="modalImg" class="modal-img" src="" alt="">
+        </div>
+    </div>
+    
+    <script>
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.classList.add('active');
+            modalImg.src = src;
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
